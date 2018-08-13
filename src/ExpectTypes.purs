@@ -3,21 +3,13 @@ module ExpectInferred where
 import Prelude
 
 import Prim.TypeError as TE
-import Type.IsEqual (class IsEqual)
-import Type.Prelude (False, Proxy, True, kind Boolean)
+import Type.Prelude (Proxy)
 
 class ExpectInferred expected actual
 
-instance expectInferredInstance ::
-  ( IsEqual a b test
-  , HandleResult a b test
-  ) => ExpectInferred a b
+instance expectInferredAA :: ExpectInferred a a
 
-class HandleResult a b (test :: Boolean) | test -> a b
-
-instance handleResultTrue :: HandleResult a a True
-
-instance handleResultFalse ::
+else instance expectInferredAB ::
   ( TE.Fail
       (TE.Above
          (TE.Text "The expected (first) and actual (second) types did not match:")
@@ -26,7 +18,7 @@ instance handleResultFalse ::
             (TE.Above
                 (TE.Quote expected)
                 (TE.Quote actual))))
-  ) => HandleResult expected actual False
+  ) => ExpectInferred expected actual
 
 expectInferred
   :: forall expected actual

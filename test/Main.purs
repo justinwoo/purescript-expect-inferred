@@ -16,6 +16,9 @@ instance simpleInstance1 :: SimpleClass Int String where
 instance simpleInstance2 :: SimpleClass String Unit where
   simpleMethod _ = unit
 
+simpleValueInferred :: String
+simpleValueInferred = simpleMethod (Proxy :: Proxy Int)
+
 test1 :: Unit
 test1 =
   let
