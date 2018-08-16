@@ -5,19 +5,22 @@ import Prelude
 import Prim.TypeError as TE
 import Type.Prelude (Proxy)
 
+infixr 2 type TE.Beside as +
+infixr 1 type TE.Above as ^
+
 class ExpectInferred expected actual
 
 instance expectInferredAA :: ExpectInferred a a
 
 else instance expectInferredAB ::
   ( TE.Fail
-      (TE.Above
-         (TE.Text "The expected (first) and actual (second) types did not match:")
-          (TE.Beside
-            (TE.Text "  ")
-            (TE.Above
-                (TE.Quote expected)
-                (TE.Quote actual))))
+      ( (TE.Text "The expected (first) and actual (second) types did not match:")
+      ^ ( (TE.Text "  ")
+        + ( (TE.Quote expected)
+          ^ (TE.Quote actual)
+          )
+        )
+      )
   ) => ExpectInferred expected actual
 
 expectInferred
