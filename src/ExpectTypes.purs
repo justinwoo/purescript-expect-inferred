@@ -8,6 +8,7 @@ import Type.Prelude (Proxy)
 infixr 2 type TE.Beside as +
 infixr 1 type TE.Above as ^
 
+class ExpectInferred :: forall a b. a -> b -> Constraint
 class ExpectInferred expected actual
 
 instance expectInferredAA :: ExpectInferred a a

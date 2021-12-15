@@ -12,10 +12,10 @@
     "output"
   ],
   "dependencies": {
-    "purescript-prelude": "^4.1.1",
-    "purescript-typelevel-prelude": "^5.0.0"
+    "purescript-prelude": "^5.0.1",
+    "purescript-typelevel-prelude": "^6.0.0"
   },
   "devDependencies": {
-    "purescript-console": "^4.2.0"
+    "purescript-console": "^5.0.0"
   }
 }
